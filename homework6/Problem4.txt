@@ -1,0 +1,51 @@
+Problem4.txt 
+Hok Yin Shum
+collaborator: Hua Bin Liu
+
+fourA:
+  This functions creates an input file stream that get into with get() char-by-
+  char. The function use get(c) when previous inputted c is not U. Then, tries to
+  find inputting 8 more ints(which it will move on), or another U (which it reset),
+  or any other char(which it will move on).
+
+  Then that sum will be assessed if there are any UXXXXXXX within the sum.If yes,
+  then we check the final step of seeing if the next char is non-digit. If so, we
+  increase the count. And restart.
+
+  Answer: 44961
+  Runtime: O(n) because this is just some constant sets of statements that scale
+  with number of integer n.
+
+fourB:
+  This is the complicated one.In this function I match the pattern in dictionary with the Big Data
+  using a Trie. In order to do this, a node class needs to first be defined.I use the node that has find
+  child function, a vector of Node* of children to be the foundation of the trie. For the trie, we have two
+  function - insertString, and searchString. 
+  The main function uses the trie to contstruct a trie, insert all the dictionary words with ifstream into 
+  the trie. Then get line the whole big data into the trie and check for strings(and its decreasing size
+  substring one by one) and increment the count without ‘h’ start as s[0].
+	Result: Crashed running the code and it takes too long.
+		
+	Runtime of search: O(n^2*mlogn) - m is the maximum string length and n is the #of
+ 	keys in the tree. It is looped for m times and and log n for the tree traversing and searching for the key.
+	And for each of the pattern we have a double nested for loop to look through all keys.
+	That’s why it is very time consuming to run.
+
+fourC:
+  This Problem is really simple. I use input file stream and getline everything of
+  the stream into a superstring-word. I then use the getLongest function to find and
+  return the longest substring in word.
+
+  Looping over the entire word char by char. We use that char selected as a key/center
+  for the possible mirrored palindrome within the range of (1, word.length()). We Then
+  run the same Algorithm twice for even and odd case to find the longest substring palindrome.
+
+  for odd: initialize low = key - 1, high = key + 1, we expend on both side char by char
+  if they are equal char. Break if they aren't. Meanwhile, storing the char in the string-longest.
+
+  for even: we do the same with the Algorithm with initialize with only change being high = key initilization.
+  comparing the current with longest, despite even/odd of longest.
+
+  Answer: BRpmpRB
+  Runtime: This code has a for loop that loops through n char, in each case, the expansion of low and high, the
+  even/odd parts both scale with n. Therefore, runtime is O(n^2).

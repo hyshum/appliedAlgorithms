@@ -1,0 +1,32 @@
+"A brief explanation of your implementation"
+
+Basics:
+  A boolean array is dynamically allocated with the memory of length * 8.
+  This is the hash table of length* 8 bools(used like bits).When the
+  hash table is output as a string, it is going to be converted by
+  adding each 0 or 1 boolean value with the ASCII offset of 48 so that
+  they become '0' and '1' chars and appended to the string.
+
+Hashing:
+  Reference: https://en.wikipedia.org/wiki/Universal_hashing
+  I consulted the above reference for its "Hashing strings" section.
+  There are two hashing functions. Both of them use a Multiplicative hash
+  function with different constant a, different prime number, and different
+  initial value of h.
+
+  For p, prime divider, chosen to be big so more random.
+
+  For a, the multiplicative constant, and h initial, initial hash value.
+  Bernstein's hash function djb2[20] for h1.
+  java.lang.String.hashCode() for 2.
+
+  Probability of false positive:
+    for the sample main, lets say:
+    #elements = 5; P = ( 1 - [1 - 1/80]^(2*5))^2 = 0.013
+    #elements = 10; P = ( 1 - [1 - 1/80]^(2*10))^2 = 0.049
+    #elements = 20; P = ( 1 - [1 - 1/80]^(2*20))^2 = 0.160
+
+    Probability is not that high. I say this is good enough.
+
+
+Collaborator: Hua Bin Liu

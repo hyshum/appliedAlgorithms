@@ -1,0 +1,32 @@
+Program4.txt file
+Hok Yin Shum
+ref: http://www.geeksforgeeks.org/longest-common-subsequence/
+
+Algorithm:
+There are two cases.
+(Case 1)The last characters of the input strings don't match.
+  Find maximum of (str1[size1-1]str2[size2]) and (str1[size1]str2[size2-1]).
+(Case 2)The last characters of the input strings match.
+  Increment LCS length by 1, and process str1[size1 - 1] and str2[size2 - 1].
+
+In the matrix implementation,
+Table stores the length of the lcs for the given pair.
+Building from bottom up manner. First, I initialize the first column and row as 0.
+Then compare char from str2 one by one with str1's char.
+Rule:
+    if the characters are equal, take the left top diagonal cell and increment it by 1.
+    if the characters are not equal, take the max of left cell and top cell.
+
+At the end, table[size1][size2] gives the length of the LCS.
+
+To obtain the LCS:
+Start from bottom right corner of the matrix,
+if we see the value isn't max of top and left cell, then that char is part of LCS.
+Pick that char, move diagonally up.
+if that value from max of top/left, move to where the value come from. (PS: if both same value, either way.)
+Stop at 0 value and don't take in that one.
+
+Runtime:
+Since this problem displays an overlapping subproblems property.Re-calculation of the same subproblems can be avoided by Dynamic Programming.
+Runtime for the construction of table take O(size1*size2). The search process takes negligible time O(size1) or O(size2) or even log them.
+Therefore, final runtime is O(size1* size2). // length of str1 * length of str2.
